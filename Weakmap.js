@@ -1,5 +1,4 @@
-const events = [
-    {
+const events = [{
         title: "Meeting",
         date: new Date("2024-03-16T10:00:00"),
         location: "Circular Innovation Hub",
@@ -42,7 +41,41 @@ const events = [
         attendees: new Set(["Elaine", "Joy", "Nunez", "Bernadette"])
     }
 ];
+//const eventOrganizers = new WeakMap();
 
+// Function to set organizer for an event
+// function setEventOrganizer(eventTitle, organizerName) {
+//     const event = events.find(event => event.title === eventTitle);
+//     if (event) {
+//         eventOrganizers.set(event, organizerName);
+//         console.log(`Organizer ${organizerName} set for event ${eventTitle}`);
+//     } else {
+//         console.log("Event not found");
+//     }
+// }
+//setEventOrganizer("Meeting", "John");
+const eventOrganizers = new WeakMap();
+
+// Function to set organizer for each event
+function setEventOrganizers() {
+    events.forEach(event => {
+        // Example: For each event, the organizer's name is set to "John Doe"
+        eventOrganizers.set(event, "Sean Njoroge");
+        console.log(`Organizer John Doe set for event ${event.title}`);
+    });
+}
+
+// Setting organizers for each event
+setEventOrganizers();
+
+// Checking the organizers for each event using WeakMap
+events.forEach(event => {
+    const organizer = eventOrganizers.get(event);
+    console.log(`Event: ${event.title}, Organizer: ${organizer}`);
+});
+// Checking the organizer using WeakMap
+const meetingOrganizer = eventOrganizers.get(events[0]);
+console.log("Meeting organizer:", meetingOrganizer);
 
 function addAttendee(eventTitle, attendeeName) {
     const event = events.find(event => event.title === eventTitle);
